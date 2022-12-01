@@ -61,11 +61,10 @@ public class TestBase {
     }
 
     public boolean isLogged(){
-
-        return false;
+        return isElementPresent(By.xpath("//a[@href='/add']"));
     }
 
     public void logout(){
-
+       click(By.xpath("//button"));
     }
 }

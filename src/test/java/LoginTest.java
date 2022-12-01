@@ -13,9 +13,10 @@ public class LoginTest extends TestBase {
     WebDriver wd;
 
     @BeforeMethod
-    public void init() {
-//        wd = new ChromeDriver();
-//        wd.navigate().to("https://contacts-app.tobbymarshall815.vercel.app/home");
+    public void preCondition(){
+        if(isLogged()){
+            logout();
+        }
     }
 
     @Test
