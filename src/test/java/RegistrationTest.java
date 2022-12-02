@@ -8,8 +8,8 @@ public class RegistrationTest extends TestBase {
 //
     @BeforeMethod
     public void preCondition(){
-        if(isLogged()){
-            logout();
+        if(app.getUser().isLogged()){
+            app.getUser().logout();
         }
     }
 
@@ -17,14 +17,14 @@ public class RegistrationTest extends TestBase {
     public void registrationPositiveTest() {
         int i = (int) (System.currentTimeMillis() / 1000) % 3600;
         String email = "zxc" + i + "@mail.com";
-        String password = "12345Qwert-";
+        String password = "Qwert12345@";
 
-        openLoginRegistrationForm();
-        fillLoginRegistrationForm(email, password);
-        submitRegistration();
+        app.getUser().openLoginRegistrationForm();
+        app.getUser().fillLoginRegistrationForm(email, password);
+        app.getUser().submitRegistration();
 
-        pause(5);
-        Assert.assertTrue(isElementPresent(By.xpath("//button")));
+        app.getUser().pause(5);
+        Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//button")));
 
     }
 
@@ -34,12 +34,12 @@ public class RegistrationTest extends TestBase {
         String email = "zxc" + i + "mail.com";
         String password = "12345Qwert-";
 
-        openLoginRegistrationForm();
-        fillLoginRegistrationForm(email, password);
-        submitRegistration();
+        app.getUser().openLoginRegistrationForm();
+        app.getUser().fillLoginRegistrationForm(email, password);
+        app.getUser().submitRegistration();
 
-        pause(3);
-        Assert.assertFalse(isElementPresent(By.xpath("//button")));
+        app.getUser().pause(3);
+        Assert.assertFalse(app.getUser().isElementPresent(By.xpath("//button")));
     }
 //    @AfterMethod
 //    public void tearDown(){

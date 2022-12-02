@@ -10,12 +10,12 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class LoginTest extends TestBase {
-    WebDriver wd;
+//    WebDriver wd;
 
     @BeforeMethod
     public void preCondition(){
-        if(isLogged()){
-            logout();
+        if(app.getUser().isLogged()){
+            app.getUser().logout();
         }
     }
 
@@ -41,15 +41,15 @@ public class LoginTest extends TestBase {
 //        wd.findElement(By.xpath("//button[1]")).click();
 
 //        HW
-        String email = "TestOlga@mail.co";
-        String password = "12345Qwert-";
-        openLoginRegistrationForm();
-        fillLoginRegistrationForm(email, password);
-        submitLogin();
+        String email = "TestOlga@mail.com";
+        String password = "Qwert12345@";
+        app.getUser().openLoginRegistrationForm();
+        app.getUser().fillLoginRegistrationForm(email, password);
+        app.getUser().submitLogin();
 
         //Assert
-        pause(5);
-        Assert.assertTrue(wd.findElement(By.xpath("//a[@href='/add']")) != null);
+        app.getUser().pause(5);
+        Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//a[@href='/add']")));
     }
 
     @AfterMethod
