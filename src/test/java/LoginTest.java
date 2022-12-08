@@ -1,3 +1,4 @@
+import models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,34 +21,45 @@ public class LoginTest extends TestBase {
     }
 
     @Test
-    public void loginPositiveTest() {
-//        //open log/reg form
-//        WebElement loginBtn = wd.findElement(By.xpath("//a[text()='LOGIN']"));
-//        loginBtn.click();
+//    public void loginPositiveTest() {
+////        //open log/reg form
+////        WebElement loginBtn = wd.findElement(By.xpath("//a[text()='LOGIN']"));
+////        loginBtn.click();
+////
+////        //fill log/reg form
+//////        WebElement email = wd.findElement(By.xpath("//input[@placeholder='Email']"));
+////        WebElement emailInput = wd.findElement(By.xpath("//input[1]"));
+////        emailInput.click();
+////        emailInput.clear();
+////        emailInput.sendKeys("TestOlga@mail.co");
+////
+////        WebElement passInput = wd.findElement(By.xpath("//input[2]"));
+////        passInput.click();
+////        passInput.clear();
+////        passInput.sendKeys("12345Qwert-");
+////
+////        //click Login button
+////        wd.findElement(By.xpath("//button[1]")).click();
 //
-//        //fill log/reg form
-////        WebElement email = wd.findElement(By.xpath("//input[@placeholder='Email']"));
-//        WebElement emailInput = wd.findElement(By.xpath("//input[1]"));
-//        emailInput.click();
-//        emailInput.clear();
-//        emailInput.sendKeys("TestOlga@mail.co");
+////        HW7
+//        String email = "0612test@mail.com";
+//        String password = "14253Asd@";
+//        app.getUser().openLoginRegistrationForm();
+//        app.getUser().fillLoginRegistrationForm(email, password);
+//        app.getUser().submitLogin();
 //
-//        WebElement passInput = wd.findElement(By.xpath("//input[2]"));
-//        passInput.click();
-//        passInput.clear();
-//        passInput.sendKeys("12345Qwert-");
-//
-//        //click Login button
-//        wd.findElement(By.xpath("//button[1]")).click();
+//        //Assert
+//        app.getUser().pause(5);
+//        Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//a[@href='/add']")));
+//    }
 
-//        HW
-        String email = "TestOlga@mail.com";
-        String password = "Qwert12345@";
+//      HW8
+    public void loginPositiveTest() {
+        User data = new User().withEmail("0612test@mail.com").withPassword("14253Asd@");
         app.getUser().openLoginRegistrationForm();
-        app.getUser().fillLoginRegistrationForm(email, password);
+        app.getUser().fillLoginRegistrationForm(data);
         app.getUser().submitLogin();
 
-        //Assert
         app.getUser().pause(5);
         Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//a[@href='/add']")));
     }

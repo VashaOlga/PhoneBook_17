@@ -1,3 +1,4 @@
+import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -17,10 +18,11 @@ public class RegistrationTest extends TestBase {
     public void registrationPositiveTest() {
         int i = (int) (System.currentTimeMillis() / 1000) % 3600;
         String email = "zxc" + i + "@mail.com";
-        String password = "Qwert12345@";
+        String password = "14253Asd@";
+        User data = new User().withEmail(email).withPassword(password);
 
         app.getUser().openLoginRegistrationForm();
-        app.getUser().fillLoginRegistrationForm(email, password);
+        app.getUser().fillLoginRegistrationForm(data);
         app.getUser().submitRegistration();
 
         app.getUser().pause(5);
@@ -32,10 +34,11 @@ public class RegistrationTest extends TestBase {
     public void registrationWrongEmail() {
         int i = (int) (System.currentTimeMillis() / 1000) % 3600;
         String email = "zxc" + i + "mail.com";
-        String password = "12345Qwert-";
+        String password = "14253Asd@";
+        User data = new User().withEmail(email).withPassword(password);
 
         app.getUser().openLoginRegistrationForm();
-        app.getUser().fillLoginRegistrationForm(email, password);
+        app.getUser().fillLoginRegistrationForm(data);
         app.getUser().submitRegistration();
 
         app.getUser().pause(3);

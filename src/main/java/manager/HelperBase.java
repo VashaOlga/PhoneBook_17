@@ -32,5 +32,9 @@ public class HelperBase{
         wd.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
     }
 
+    public String getText(By locator){
+      return  wd.findElement(locator).getText();
+    }
+
 
 }
