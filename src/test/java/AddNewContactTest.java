@@ -1,3 +1,4 @@
+import models.AddContact;
 import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -25,7 +26,7 @@ public class AddNewContactTest extends TestBase {
     }
 
     @Test
-    public void addNewContactPositiveTest() {
+    public void addNewContactPositiveTest1() {
 //        app.getContact().openContactForm();
 
         app.getContact().pause(3);
@@ -45,6 +46,28 @@ public class AddNewContactTest extends TestBase {
 
 //      contact-item_card__2SOIM
         Assert.assertTrue(app.getContact().getText(By.xpath("//div[@class='contact-item_card__2SOIM'][last()]//h3")).equals(phone));
+    }
+
+    @Test
+    public void addNewContactPositiveTest() {
+
+        int i = (int) (System.currentTimeMillis() / 1000) % 3600;
+
+        AddContact contact = AddContact.builder()
+                .name("Jack"+i)
+                .lastName("Jackson"+i)
+                .phone("050"+i+"987")
+                .email("zxc" + i + "@mail.com")
+                .address("Israel")
+                .description("friend")
+                .build();
+
+        app.getContact().pause(3);
+        app.getContact().openContactForm();
+        app.getContact().fillAddNewContactForm(contact);
+        app.getContact().submitContact();
+
+        Assert.assertTrue(app.getContact().getText(By.xpath("//div[@class='contact-item_card__2SOIM'][last()]//h3")).equals(contact.getPhone()));
     }
 
     @AfterMethod

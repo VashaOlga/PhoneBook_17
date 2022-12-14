@@ -64,6 +64,54 @@ public class LoginTest extends TestBase {
         Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//a[@href='/add']")));
     }
 
+    @Test
+    public void loginWrongEmailWithoutStrudelTest(){
+
+        User data = new User().withEmail("0612testmail.com").withPassword("14253Asd@");
+        app.getUser().openLoginRegistrationForm();
+        app.getUser().fillLoginRegistrationForm(data);
+        app.getUser().submitLogin();
+
+        Assert.assertTrue(app.getUser().isErrorMessageInFormat("Wrong email or password"));
+        Assert.assertTrue(app.getUser().isAlertPresent());
+    }
+
+    @Test
+    public void loginWrongEmailWithoutPointTest(){
+
+        User data = new User().withEmail("0612test@mailcom").withPassword("14253Asd@");
+        app.getUser().openLoginRegistrationForm();
+        app.getUser().fillLoginRegistrationForm(data);
+        app.getUser().submitLogin();
+
+        Assert.assertTrue(app.getUser().isErrorMessageInFormat("Wrong email or password"));
+        Assert.assertTrue(app.getUser().isAlertPresent());
+    }
+
+    @Test
+    public void loginWrongPasswordTest(){
+
+        User data = new User().withEmail("0612test@mail.com").withPassword("Asd14253@");
+        app.getUser().openLoginRegistrationForm();
+        app.getUser().fillLoginRegistrationForm(data);
+        app.getUser().submitLogin();
+
+        Assert.assertTrue(app.getUser().isErrorMessageInFormat("Wrong email or password"));
+        Assert.assertTrue(app.getUser().isAlertPresent());
+    }
+
+    @Test
+    public void loginWrongPasswordWithoutStrudelTest(){
+
+        User data = new User().withEmail("0612test@mail.com").withPassword("14253Asd");
+        app.getUser().openLoginRegistrationForm();
+        app.getUser().fillLoginRegistrationForm(data);
+        app.getUser().submitLogin();
+
+        Assert.assertTrue(app.getUser().isErrorMessageInFormat("Wrong email or password"));
+        Assert.assertTrue(app.getUser().isAlertPresent());
+    }
+
     @AfterMethod
     public void tearDown() {
 //        wd.quit();
